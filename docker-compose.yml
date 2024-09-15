@@ -1,15 +1,19 @@
 version: '3.8'
+
 services:
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    ports:
-      - "27017:27017"
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: assistant_db
+    ports:
+      - '5432:5432'
     volumes:
-      - mongodb_data:/data/db
+      - db_data:/var/lib/postgresql/data
+
 volumes:
-  mongodb_data:
-    driver: local
+  db_data:
+

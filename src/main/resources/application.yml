@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: asistente-virtual
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: phi-3.5
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/assistant_db
+    username: postgres
+    password: postgres
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+
+logging:
+  level:
+    root: INFO
+    org.springframework.ai: DEBUG
+    org.springframework.r2dbc: DEBUG
+
+server:
+  port: 8080
